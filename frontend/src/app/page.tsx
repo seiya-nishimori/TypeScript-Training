@@ -21,10 +21,35 @@ export default function Home() {
                 <h1 className="text-2xl font-bold text-gray-800 mb-4">
                     勤怠管理システム 構築テスト
                 </h1>
+
+                {/* ここでＨｅｌｌｏを呼び出す */}
+                <Hello />
+
+
                 <div className="text-xl font-mono text-blue-600 bg-blue-50 p-4 rounded-lg border border-blue-200">
                     {message}
                 </div>
+
+                <HTReload />
+
             </div>
+
+
         </div>
     );
+
+}
+
+
+//Hello コンポーネント
+function Hello() {
+    return <h1>Hello.</h1>;
+
+    // 文字を大きくして、赤色にしてみる（Tailwind CSS）
+    // return <h1 className="text-4xl text-red-600 font-black">HELLO!!!!</h1>;
+}
+
+
+function HTReload() {
+    return <h1 className="text-2xl text-green-500">ホットリロード動け！！</h1>;
 }

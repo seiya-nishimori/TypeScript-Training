@@ -30,6 +30,18 @@ Markdown
 今の構成図（フロント ↔ バック ↔ DB）
 
 
+プリズマはまだ入ってない。（Prisma）
+プリズマは、SQLを書かなくてもTypeScriptのコードでデータを操作できるツールです。
+
+
+
+🛠️ ステップ1：SQLを投げるためのライブラリを導入
+SQLの練習のために、今はPrismaは使いませんが、Node.jsからPostgreSQLに接続するための「橋渡し役」のライブラリ（pg）だけは必要です。これをインストールしましょう。
+
+PowerShell
+docker-compose exec backend npm install pg
+docker-compose exec backend npm install -D @types/pg
+
 
 今はまだ DB 接続が「準備中」なので、README に 「## 今後の予定: PostgreSQL との接続、
 TypeScriptの初心者練習（新規作成、更新、作成、アップデート）の実装。
@@ -133,3 +145,4 @@ URL　　　localhost:3000 だけ見ればOK　　　localhost:3000 だけ見れ
 
 
 
+Next.jsを動かすためのライブラリのインストールを行いました。
