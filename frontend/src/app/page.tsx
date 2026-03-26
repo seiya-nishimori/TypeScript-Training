@@ -1,98 +1,86 @@
 'use client';
 
-import { useEffect, useState } from "react";
-
-
-
-
-//Hello コンポーネント
-function Hello() {
-    return <h1>Hello.</h1>;
-
-    // 文字を大きくして、赤色にしてみる（Tailwind CSS）
-    // return <h1 className="text-4xl text-red-600 font-black">HELLO!!!!</h1>;
-}
-
-
-function HTReload() {
-    return <h1 className="text-2xl text-green-500">ホットリロード動け！！</h1>;
-}
-
 
 
 export default function Home() {
-    const [message, setMessage] = useState("バックエンドに接続中...");
 
-    let str: string = 'Hello World';
-    console.log("Hello, TypeScript!");
 
-    console.log("Hello, TypeScript!  2");
 
-    useEffect(() => {
+    // 表の見出しデータを配列にまとめます
 
-        console.log("Hello");
+    const headers: string[] = ['名前', '年齢', '退職状況'];
 
-        fetch("http://localhost:8000/")
-            .then((res) => res.json())
-            .then((data) => setMessage(data.message))
-            .catch((err) => {
-                console.error("通信エラー:", err);
-                setMessage("バックエンドから返事がありません");
-            });
-    }, []);
+
+    type User = {
+        name: string;     //文字列
+        age: number;      //数字
+        status: boolean;    //真偽値
+
+    };
+
+    const users: User[] = [
+        { name: "ああ", age: 2, status: true },
+        { name: "うう", age: 4, status: false }
+    ];
+
+
+    // １人のデータを｛｝で囲込み、それを[]でリスト化します
+
+
 
     return (
-        <div className="flex min-h-screen items-center justify-center bg-gray-100">
-            <div className="p-10 bg-white rounded-2xl shadow-xl text-center">
-                <h1 className="text-2xl font-bold text-gray-800 mb-4">
-                    勤怠管理システム 構築テストqqqqqq
-                </h1>
-
-                {/* ここでＨｅｌｌｏを呼び出す（関数呼び出し） */}
-                <Hello />
+        <div className="p-10">
+            <h1 className="text-3xl font-bold border-b-2 pb-2 mb-10" >
+                TypeScript練習
+            </h1>
 
 
-                <div className="text-xl font-mono text-blue-600 bg-blue-50 p-4 rounded-lg border border-blue-200">
-                    {message}
-                </div>
-
-                {/* （関数呼び出し） */}
-                <HTReload />
+            {/* テーブル全体 */}
+            <table className="border-collapse border border-gray-400">
 
 
-                何でもいいので文字を変えて保存してみる
-                // console.log("★★★ ログテスト中 ★★★");eeeeee
 
-                console.log("★★★ ログテスト中 ★★★");
+                {/* テーブルのヘッド部分 */}
+                <thead>
+                    <tr className="bg-gray-100">
+                        {/* mapを使ってすべてのtdに一括で枠線と余白を付けます */}
+                        {headers.map((text, index) => (
+                            <td key={index} className="border border-gray-300 p-2">
+                                {text}
+                            </td>
+                        ))}
+                    </tr>
+                </thead>
 
-            </div>
+
+                {/* テーブルのデータ部分 */}
+                <tbody>
+
+                    {/* map使って箱（users）のなかから１人（user）ずつ取り出す */}
+                    {/* アロー関数使って上で変数宣言して作った連想配列をテーブルに表示する */}
+                    {users.map((user, index) => (
+
+                        <tr key={index}>
+                            <td className="border border-gray-300 p-2" >{user.name}</td>
+                            <td className="border border-gray-300 p-2">{user.age}</td>
+                            {/* ここどんな処理になってるか分からん */}
+                            <td className="border border-gray-300 p-2">{user.status ? "退職済み" : "在職中"}</td>
+
+                        </tr>
+                    ))}
+
+                </tbody>
+
+
+            </table>
+
+
+
 
 
         </div>
-    );
 
+
+
+    )
 }
-
-
-// // 何でもいいので文字を変えて保存してみる
-// console.log("★★★ ログテスト中 ★★★");
-
-
-
-// // 何でもいいので文字を変えて保存してみる
-// console.log("★★★ ログテスト中 ★★★");
-
-
-
-// // 何でもいいので文字を変えて保存してみる
-console.log("★★★ ログテスト中 ★★★");
-
-
-
-
-
-
-
-
-
-

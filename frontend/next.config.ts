@@ -1,7 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-    /* ここは空っぽにする。Next.jsのデフォルトに任せる */
+    reactStrictMode: false, // ここを false にすると2回実行が止まります！
 };
 
 export default nextConfig;
