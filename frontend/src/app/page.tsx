@@ -30,16 +30,24 @@ export default function Home() {
 
 
                 <div className="flex flex-col items-center justify-center gap-6 max-w-md mx-auto">
-                    <button
-                        className="w-full p-6 border-2 border-blue-500 rounded-xl hover:bg-blue-50 text-center font-bold"
-                    >
-                        📊 テーブル作成
-                    </button>
-                    <button
-                        className="w-full p-6 border-2 border-green-500 rounded-xl hover:bg-green-50 text-center font-bold"
-                    >
-                        🌿 if文・条件分岐
-                    </button>
+
+                    {/* テーブルページへのリンク */}
+                    <Link href="/table-practice" className="w-full">
+                        <div className="p-6 border-2 border-blue-500 rounded-xl hover:bg-blue-50 text-center font-bold cursor-pointer transition">
+                            📊 テーブル作成
+                        </div>
+                    </Link>
+
+
+
+                    <Link href="/if-practice" className="w-full">
+                        <div className="w-full p-6 border-2 border-green-500 rounded-xl hover:bg-green-50 text-center font-bold">
+                            🌿 if文・条件分岐
+                        </div>
+                    </Link>
+
+
+
                 </div>
             </div>
 

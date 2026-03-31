@@ -5,7 +5,7 @@ import Link from "next/link"; // Next.js推奨のリンク機能
 
 
 // 「Page」という名前ではなく「IfPracticeContent」などの部品名にする
-export function IfPracticeContent() {
+export default function IfPracticeContent() {
 
 
 
