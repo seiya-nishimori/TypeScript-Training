@@ -1,5 +1,10 @@
 'use client';
 
+import Header from "@/components/Header";
+import Link from "next/link"; // Next.js推奨のリンク機能
+
+
+
 export function TableContent() {
     const headers: string[] = ['名前', '年齢', '退職状況', '3歳以上？', '山田さんかどうか', '１歳以上かつ退職者', 'どちらか一方', "3歳以外か"];
     const users = [
@@ -9,6 +14,12 @@ export function TableContent() {
 
     return (
         <div className="p-4">
+
+            {/* ここにハンバーガーメニューを置かないと表示されない */}
+
+            <Header setView={(view) => console.log(view)} />
+
+
             <h1 className="text-3xl font-bold border-b-2 pb-2 mb-10 text-blue-600 text-center">テーブル作成練習</h1>
             <div className="overflow-x-auto">
                 <table className="mx-auto border-collapse border border-gray-400">

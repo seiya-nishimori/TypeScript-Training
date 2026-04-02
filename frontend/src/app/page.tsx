@@ -23,6 +23,10 @@ export default function Home() {
     return (
         <div className="p-10 relative">
 
+            {/* ここにハンバーガーメニューを置かないと表示されない */}
+
+            <Header setView={(view) => console.log(view)} />
+
             <div>
                 <h1 className="text-3xl font-bold border-b-2 pb-2 mb-10 text-center">TypeScript 練習帳</h1>
 
