@@ -50,6 +50,14 @@ export default function Header({ setView }: HeaderProps) {
                         </Link>
 
 
+                        {/* in(オブジェクト構造判定) */}
+                        <Link href="/in-practice" onClick={() => setIsOpen(false)}>
+                            <li className="">
+                                in(オブジェクト構造判定)
+                            </li>
+                        </Link>
+
+
                     </ul>
                 </div>
             )}
