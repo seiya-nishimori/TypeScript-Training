@@ -58,6 +58,25 @@ export default function Header({ setView }: HeaderProps) {
                         </Link>
 
 
+                        {/* instanceof練習 */}
+
+                        <Link href="/instanceof-practice" onClick={() => setIsOpen(false)}>
+                            <li className="">
+                                instanceof練習
+                            </li>
+                        </Link>
+
+
+                        {/* Switch文練習 */}
+
+                        <Link href="/switch-practice" onClick={() => setIsOpen(false)}>
+                            <li className="">
+                                Switch文練習
+                            </li>
+                        </Link>
+
+
+
                     </ul>
                 </div>
             )}

@@ -4,24 +4,16 @@ import Header from "@/components/Header";
 import Link from "next/link";
 
 
-// <Link href="/if-practice" className="w-full p-6 border-2 border-green-500 ... text-center">
-//     🌿 if文・条件分岐
-// </Link>
+
 
 export default function Home() {
 
     // 画面遷移（画面切り替え）
-    // const [view, setView] = useState('home');
+    //ページリンクを使って、画面遷移を行う
 
-    // テーブル用のデータ（以前のコードと同じ）
-    const headers: string[] = ['名前', '年齢', '退職状況', '3歳以上？', '山田さんかどうか', '１歳以上かつ退職者', 'どちらか一方', "3歳以外か"];
-    const users = [
-        { name: "山田太郎", age: 2, status: true },
-        { name: "せいや", age: 4, status: false }
-    ];
 
     return (
-        <div className="p-10 relative">
+        <div className=" p-10 relative">
 
             {/* ここにハンバーガーメニューを置かないと表示されない */}
 
@@ -35,20 +27,45 @@ export default function Home() {
 
                 <div className="flex flex-col items-center justify-center gap-6 max-w-md mx-auto">
 
+
+                    {/* if文練習 */}
+                    <Link href="/if-practice" className="w-full">
+                        <div className="w-full p-6 border-2 border-green-500 rounded-xl hover:bg-green-50 hover:scale-105 text-center font-bold">
+                            🌿 if文・条件分岐
+                        </div>
+                    </Link>
+
                     {/* テーブルページへのリンク */}
                     <Link href="/table-practice" className="w-full">
-                        <div className="p-6 border-2 border-blue-500 rounded-xl hover:bg-blue-50 text-center font-bold cursor-pointer transition">
+                        <div className="p-6 border-2 border-blue-500 rounded-xl hover:bg-blue-50 hover:scale-105 text-center font-bold cursor-pointer transition">
                             📊 テーブル作成
                         </div>
                     </Link>
 
 
-
-                    <Link href="/if-practice" className="w-full">
-                        <div className="w-full p-6 border-2 border-green-500 rounded-xl hover:bg-green-50 text-center font-bold">
-                            🌿 if文・条件分岐
+                    {/* in (オブジェクト構造判定) */}
+                    <Link href="/in-practice" className="w-full">
+                        <div className="p-6 border-2 border-purple-500 rounded-xl hover:bg-purple-50 hover:scale-105 text-center font-bold cursor-pointer transition">
+                            🔍 in (オブジェクト構造判定)
                         </div>
                     </Link>
+
+
+                    {/* Instanceof練習（ArrayとDateの判定） */}
+                    <Link href="/instanceof-practice" className="w-full">
+                        <div className="p-6 border-2 border-orange-500 rounded-xl hover:bg-orange-50 hover:scale-105 text-center font-bold cursor-pointer transition">
+                            🆔 Instanceof練習（ArrayとDateの判定）
+                        </div>
+                    </Link>
+
+
+                    {/* Switch文練習 */}
+                    <Link href="/switch-practice" className="w-full">
+                        <div className="p-6 border-2 border-red-500 rounded-xl hover:bg-red-50 hover:scale-105 text-center font-bold cursor-pointer transition">
+                            🚦 Switch文練習
+                        </div>
+                    </Link>
+
 
 
 
