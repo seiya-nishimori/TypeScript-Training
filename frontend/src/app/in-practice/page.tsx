@@ -4,6 +4,7 @@ import Header from "@/components/Header";
 
 
 // この画面の名前は「InPractice」です
+//inはプロパティを見るもの
 export default function InPractice() {
     // 1. データの準備（中身を1つのオブジェクトにまとめると管理しやすくなります）
     const people = {

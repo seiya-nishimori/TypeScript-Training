@@ -5,6 +5,8 @@ import Link from "next/link";
 
 
 
+//ホーム画面です（リンクを使って各学習項目のページに画面遷移してます）
+
 
 export default function Home() {
 
@@ -21,6 +23,8 @@ export default function Home() {
 
             <div>
                 <h1 className="text-3xl font-bold border-b-2 pb-2 mb-10 text-center">TypeScript 練習帳</h1>
+
+                <h2 className="text-center mb-1">ページリンクを使って、画面遷移を行う</h2>
 
                 <h2 className="text-center mb-4">アルゴリズムとフローチャートを意識しよう</h2>
 
