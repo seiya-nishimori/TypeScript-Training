@@ -1,6 +1,9 @@
 {
   "dependencies": {
-    "cors": "^2.8.6"
+    "@tailwindcss/postcss": "^4.2.2",
+    "cors": "^2.8.6",
+    "postcss": "^8.5.9",
+    "tailwindcss": "^4.2.2"
   },
   "devDependencies": {
     "@types/cors": "^2.8.19"

@@ -4,29 +4,32 @@ services:
     ports:
       - "3000:3000"
     volumes:
-      - ./frontend:/app
+      - ./frontend:/app:delegated
       - /app/node_modules
-      - /app/.next  # ビルドキャッシュをコンテナ側で保持
+      - /app/.next
     environment:
       - WATCHPACK_POLLING=true
+      - CHOKIDAR_USEPOLLING=true
+      - CHOKIDAR_INTERVAL=500        # 100より負荷を抑えつつ検知を安定化
       - NEXT_TELEMETRY_DISABLED=1
-      # 開発モードを明示的に指定（たまに効きます）
-      - NODE_ENV=development 
+      - NODE_ENV=development
+      - NODE_OPTIONS=--max-old-space-size=2048 # メモリ不足によるクラッシュを防止
+    restart: always                  # 落ちても自動で再起動する設定を追加
 
   backend:
     build: ./backend
     ports:
       - "8000:8000"
     volumes:
-      - ./backend:/app
+      - ./backend:/app:delegated
       - /app/node_modules
     environment:
-      # バックエンドもホットリロード（tsx watchなど）を使っているならこれも有効
-      - WATCHPACK_POLLING=true 
-      - NODE_ENV=production  # 本番環境であることを明示
-    # バックエンドがDBを待つように設定
+      - WATCHPACK_POLLING=true
+      - CHOKIDAR_USEPOLLING=true
+      - NODE_ENV=development
     depends_on:
       - db
+    restart: always                  # バックエンドも安定のために追加
 
   db:
     image: postgres:16
@@ -36,9 +39,9 @@ services:
       - POSTGRES_USER=user
       - POSTGRES_PASSWORD=password
       - POSTGRES_DB=kintai_db
-    # DBにPOLLINGは不要なので削除しました
     volumes:
       - db_data:/var/lib/postgresql/data
+    restart: always
 
 volumes:
   db_data:

@@ -40,3 +40,21 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+
+# ライブラリ
+node_modules/
+frontend/node_modules/
+backend/node_modules/
+
+# Next.jsのビルド成果物
+.next/
+frontend/.next/
+
+# 環境変数
+.env
+.env.local
+
+# OS固有のファイル
+.DS_Store
+Thumbs.db
