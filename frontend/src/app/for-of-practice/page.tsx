@@ -1,7 +1,13 @@
 
 'use client';
 
+import Header from "@/components/Header";// 共通のヘッダー部品を読み込む
+
+
+
+
 export default function ForOfPractice() {
+
 
 
     //全部回せる
@@ -62,11 +68,34 @@ export default function ForOfPractice() {
 
     // 画面に表示する内容（JSX）を返す
     return (
-        <div>
-            <h2>ループ処理のテスト</h2>
-            <ul>
 
-            </ul>
-        </div>
+        <div className="">
+            {/* ヘッダーを表示 */}
+            <Header setView={() => { }} />
+
+            <h1 className="text-center font-bold text-blue-400 text-3xl mt-8  pb-4 border-b-2 ">for ofとは？</h1>
+            <p className="mt-4 p-4 ">for...of は、配列や文字列などの「中身」を一つずつ取り出して処理する、TypeScript（JavaScript）で最もよく使われる便利なループ構文です。</p>
+
+
+            <div className="bg-white rounded-xl p-6 border border-slate-200 shadow-sm mt-8">
+                <h3 className="text-lg font-bold text-slate-800 mb-3 flex items-center">
+                    <h1 className="w-5 h-5 mr-2 text-blue-500" />
+                    for of 特徴
+                </h3>
+                <ul className="space-y-3 text-slate-600 text-sm">
+
+                    <li className="flex items-start"><p className="w-4 h-4 mt-0.5 mr-2 text-blue-500 flex-shrink-0" /> 中身を直接取り出すので読みやすい</li>
+                    <li className="flex items-start"><p className="w-4 h-4 mt-0.5 mr-2 text-blue-500 flex-shrink-0" /> 配列の範囲外を参照するバグが起きない</li>
+                    <li className="flex items-start"><p className="w-4 h-4 mt-0.5 mr-2 text-blue-500 flex-shrink-0" /> Reactで単純なリスト表示をするときに最適</li>
+
+                </ul>
+            </div>
+
+
+
+
+
+        </div >
+
     );
 }

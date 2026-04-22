@@ -76,10 +76,7 @@ export default function Header({ setView }: HeaderProps) {
                             <Link href="/filter-practice" className={itemStyle} onClick={() => setIsOpen(false)}>🧪filter</Link>
                             <Link href="/find-practice" className={itemStyle} onClick={() => setIsOpen(false)}>🧪find</Link>
                             <Link href="/some-practice" className={itemStyle} onClick={() => setIsOpen(false)}>🧪some</Link>
-                            <Link href="/every-practice" className={itemStyle} onClick={() => setIsOpen(false)}>🧪every</Link>
                             <Link href="/reduce-practice" className={itemStyle} onClick={() => setIsOpen(false)}>🧪reduce</Link>
-                            <Link href="/includes-practice" className={itemStyle} onClick={() => setIsOpen(false)}>🧪includes</Link>
-                            <Link href="/forEach-practice" className={itemStyle} onClick={() => setIsOpen(false)}>🧪forEach</Link>
                             <Link href="/sort-practice" className={itemStyle} onClick={() => setIsOpen(false)}>🧪sort</Link>
                             <Link href="/flat-practice" className={itemStyle} onClick={() => setIsOpen(false)}>🧪flat</Link>
                             <Link href="/flatMap-practice" className={itemStyle} onClick={() => setIsOpen(false)}>🧪flatMap</Link>
