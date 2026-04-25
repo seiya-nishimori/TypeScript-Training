@@ -72,7 +72,7 @@ export default function FindPractice() {
 
 
 
-            GitHubにコメント入れて次に進む
+
         </div>
     );
 }
