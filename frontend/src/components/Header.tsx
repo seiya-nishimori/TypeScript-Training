@@ -83,6 +83,38 @@ export default function Header({ setView }: HeaderProps) {
                         </div>
                     )}
 
+
+
+                    {/* --- カテゴリー：CRUD（データ操作） --- */}
+                    <div className={categoryTitleStyle} onClick={() => toggleCategory('crud')}>
+                        <span>CRUD：データ操作の実践</span>
+                        <span>{openCategory === 'crud' ? '▼' : '▶'}</span>
+                    </div>
+                    {openCategory === 'crud' && (
+                        <div className="bg-white animate-in slide-in-from-top-1 duration-200">
+                            <Link href="/crud-read" className={itemStyle} onClick={() => setIsOpen(false)}>
+                                📖 Read (一覧を表示する)
+                            </Link>
+                            <Link href="/crud-delete" className={itemStyle} onClick={() => setIsOpen(false)}>
+                                🗑️ Delete (データを削除する)
+                            </Link>
+                            <Link href="/crud-create" className={itemStyle} onClick={() => setIsOpen(false)}>
+                                ✍️ Create (新しく追加する)
+                            </Link>
+                            <Link href="/crud-update" className={itemStyle} onClick={() => setIsOpen(false)}>
+                                🔄 Update (内容を更新する)
+                            </Link>
+                            {/* 全部入り：最終目標 */}
+                            <Link href="/crud-total" className="p-3 pl-8 hover:bg-purple-50 transition-colors border-b last:border-none cursor-pointer block text-sm font-bold text-purple-600" onClick={() => setIsOpen(false)}>
+                                🏆 ユーザー管理アプリ完成版
+                            </Link>
+                        </div>
+                    )}
+
+
+
+
+
                     {/* --- その他 --- */}
                     <Link href="/" onClick={() => setIsOpen(false)} className="p-2 text-center block text-blue-500 font-bold border-t hover:bg-blue-50">
                         🏠 ホームへ戻る
