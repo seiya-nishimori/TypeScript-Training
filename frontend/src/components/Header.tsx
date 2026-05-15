@@ -90,8 +90,15 @@ export default function Header({ setView }: HeaderProps) {
                         <span>CRUD：データ操作の実践</span>
                         <span>{openCategory === 'crud' ? '▼' : '▶'}</span>
                     </div>
+
+
+                    {/* animate-in: 「今からアニメーションを開始するよ！」というスイッチです。 */}
+                    {/* slide-in-from-top-1: 「少し上（1 ユニット分）からスライドして入ってくる」という動きの種類を指定しています。 */}
+                    {/* duration-200: 「0.2秒（200ms）かけて動く」という速さを指定しています。 */}
+
                     {openCategory === 'crud' && (
                         <div className="bg-white animate-in slide-in-from-top-1 duration-200">
+                            {/* その項目をクリックしたらsetIsOpenで今開いてるメニューページを閉じて、画面遷移するってこと */}
                             <Link href="/crud-read" className={itemStyle} onClick={() => setIsOpen(false)}>
                                 📖 Read (一覧を表示する)
                             </Link>
