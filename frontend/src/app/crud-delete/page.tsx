@@ -25,7 +25,7 @@ export default function CrudDelete() {
 
     const deleteUser = (targetId: number) => {
         //filter使って「クリックされたID以外」のユーザーだけ残す
-        const updatedUsers = users.filter(user => user.id! == targetId);
+        const updatedUsers = users.filter(user => user.id !== targetId);
         //新しい配列をセットして画面を更新する
         //どうやって作るか：更新の状態（setUsers） : setUsersが呼ばれ、Reactが「データが変わったから画面を修正してと命令する」Read(map)が走り、ID２が消えた画面が表示される。
 
