@@ -60,7 +60,9 @@ export default function CrudCreate() {
         //スプレッド構文（配列をコピー）：...users  配列をコピーして新しい配列を作る
 
 
-        setUsers([...users, newUser]);
+
+        setUsers((prev) => [...prev, newUser]);
+
 
         //最後に入力欄をリセット
         setInputName("");
