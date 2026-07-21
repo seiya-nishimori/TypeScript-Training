@@ -33,25 +33,28 @@ export default function CrudCreate() {
     const [inputName, setInputName] = useState("");
 
 
+    //メール追加機能（機能追加）
+    const [inputEmail, setInputEmail] = useState("");    //追加
+
 
     //追加ボタンを押した時の処理(何がしたいか考える)
     const createUser = (e: React.FormEvent) => {
         //フォーム送信時のページの再読み込みをやめる（これがないとページがリロードされて、データが消えるから）
         e.preventDefault();
-        console.log("①入力値", inputName);
+        console.log("①入力値 name", inputName, "email:", inputEmail);     //ログでメールが入力されたか確認できるようにする（追加）
 
-        //入力された文字が空文字なら、処理を中断する
-        if (inputName.trim() === "") return;
+        //入力された文字が空文字なら、処理を中断する(メールと名前の追加時の処理)・・・・・　追加➄
+        if (inputName.trim() === "" || inputEmail.trim() === "") return;
 
         //追加したいデータの設計だけ作る（まだusersには入ってない）
         const newUser: User = {
             id: Date.now(),
             name: inputName,
-            email: `${Date.now()}@example.com`,
+            email: inputEmail,        //変更➃　（Date.now（）埋め込みをやめて実際の入力値にする）
             role: "一般ユーザー",
         };
 
-        console.log("②新規ユーザー:", newUser);
+        console.log("➁新規ユーザー:", newUser);
 
 
 
@@ -66,6 +69,7 @@ export default function CrudCreate() {
 
         //最後に入力欄をリセット
         setInputName("");
+        setInputEmail("");     //追加➅
     };
 
 
@@ -81,13 +85,14 @@ export default function CrudCreate() {
             <Header setView={() => { }} />
 
             <h1 className="text-2xl font-bold mb-6 border-b-2 pb-2 border-green-500">
-                Create練習（作成）
+                Create練習（作成）メールと名前の追加
             </h1>
 
 
 
             {/* 入力フォームの作成 */}
             <form onSubmit={createUser} className="mb-8 p-4 bg-gray-50 rounded-xl border flex gap-3 ">
+                {/* 新しいユーザーの名前入力欄の作成 */}
                 <input
                     type="text"
                     value={inputName}
@@ -95,6 +100,16 @@ export default function CrudCreate() {
                     placeholder="新しいユーザーの名前を入力"
                     className="flex-1 p-2 border rounded-lg"
 
+                />
+
+                {/* メールアドレス入力欄 */}
+
+                <input
+                    type="text"
+                    value={inputEmail}
+                    onChange={(e) => setInputEmail(e.target.value)}
+                    placeholder="メールアドレスを入力"
+                    className="flex-1 p-2 border rounded-lg"
                 />
                 <button type="submit" className="bg-green-600 text-white px-6 py-2 rounded-lg font-bold " >
                     ✨ 追加
@@ -114,6 +129,7 @@ export default function CrudCreate() {
 
                         <p className="text-sm text-blue-600 font-bold">{user.role}</p>
                         <h2 className="text-xl font-bold text-gray-800">{user.name}</h2>
+                        <p className="text-gray-500 text-sm">{user.email}</p>
                         <p className="text-gray-400 text-xs font-mono">ID:{user.id}</p>
                     </div>
                 ))}
