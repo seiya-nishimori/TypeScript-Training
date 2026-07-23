@@ -2,7 +2,11 @@
 import Header from "@/components/Header";
 import { useState } from "react";
 
-// データの定義（Create練習と同じ形）
+//解析のポイントは、今から探す場所の目的を決めてから読む（型定義？　箱State? 処理関数？　表示JSX？）　目的の意識が初心者と経験者の違い
+
+// データの定義（Updateなので既存データを更新できるようにする）
+//型定義を探す（データ「型」を知る）
+//➀TypeScriptでは、まずTypeやinterfaceを探します（このアプリで扱うデータ「変数」はこういう形ですよって説明してくれてる設計図だから）
 type User = {
     id: number;
     name: string;

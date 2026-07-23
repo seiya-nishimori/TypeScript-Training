@@ -2,6 +2,11 @@
 import Header from "@/components/Header";
 import { useState } from "react";
 
+//stateは、覚える箱
+//inputは、入力する場所
+//trimは、バリデーションチェック（入力確認をチェックする場所）
+//("")は空にする場所、リセットする場所
+
 
 //重要：returnの上では、データや処理を準備してる（状態管理、関数、データの計算）
 //上がロッジック
@@ -11,6 +16,8 @@ type User = {
     id: number;
     name: string,
     email: string,
+    address: string,
+    phone: string,
     role: string,
 };
 
@@ -21,8 +28,8 @@ export default function CrudCreate() {
     // usersは、今の一覧データ（読み取り専用）
     // setUsersは、userを書き換える為の関数
     const [users, setUsers] = useState<User[]>([
-        { id: 1, name: "田中", email: "tanaka@example.com", role: "管理者" },
-        { id: 2, name: "佐藤", email: "sato@example.com", role: "一般ユーザー" },
+        { id: 1, name: "田中", email: "tanaka@example.com", address: "東京都渋谷区神南1-1-1", phone: "090-1234-5678", role: "管理者" },
+        { id: 2, name: "佐藤", email: "sato@example.com", address: "大阪府大阪市北区梅田2-2-2", phone: "080-9876-5432", role: "一般ユーザー" },
     ]);
 
 
@@ -30,6 +37,7 @@ export default function CrudCreate() {
     //ユーザーがinputに文字を打つ度に、その文字をinputNameという箱に1時保存する
     //Reactのルールで、「画面の見た目」と「裏側のデータ」一致させる仕組みなので、→入力中の文字も裏側でデータとして盛っておく必要がある。
 
+    //名前の追加
     const [inputName, setInputName] = useState("");
 
 
@@ -37,20 +45,30 @@ export default function CrudCreate() {
     const [inputEmail, setInputEmail] = useState("");    //追加
 
 
+    //住所の追加
+    const [inputAddress, setInputAddress] = useState("");    //追加
+
+    //電話番号の追加
+    const [inputPhone, setInputPhone] = useState("");     //電話番号の追加
+
+
+
     //追加ボタンを押した時の処理(何がしたいか考える)
     const createUser = (e: React.FormEvent) => {
         //フォーム送信時のページの再読み込みをやめる（これがないとページがリロードされて、データが消えるから）
         e.preventDefault();
-        console.log("①入力値 name", inputName, "email:", inputEmail);     //ログでメールが入力されたか確認できるようにする（追加）
+        console.log("①入力値 name", inputName, "email:", inputEmail, "address", inputAddress,);     //ログで住所が入力されたか確認（ログ確認）
 
-        //入力された文字が空文字なら、処理を中断する(メールと名前の追加時の処理)・・・・・　追加➄
-        if (inputName.trim() === "" || inputEmail.trim() === "") return;
+        //入力された文字が空文字なら、処理を中断する(データ追加時の処理)・・・・・　追加➄
+        if (inputName.trim() === "" || inputEmail.trim() === "" || inputAddress.trim() === "" || inputPhone.trim() === "") return;
 
         //追加したいデータの設計だけ作る（まだusersには入ってない）
         const newUser: User = {
             id: Date.now(),
             name: inputName,
             email: inputEmail,        //変更➃　（Date.now（）埋め込みをやめて実際の入力値にする）
+            address: inputAddress,     //住所追加機能
+            phone: inputPhone,       //電話番号の追加
             role: "一般ユーザー",
         };
 
@@ -63,13 +81,17 @@ export default function CrudCreate() {
         //スプレッド構文（配列をコピー）：...users  配列をコピーして新しい配列を作る
 
 
-
+        // 入力されたデータを配列に追加する（これであってるか？？？？？？？？？？）
+        // usersという配列に追加される？？？？？
         setUsers((prev) => [...prev, newUser]);
 
 
         //最後に入力欄をリセット
         setInputName("");
-        setInputEmail("");     //追加➅
+        setInputEmail("");
+        setInputAddress("");      //住所の入力欄を空にする
+        setInputPhone("");       //電話番号の入力欄を空にする
+
     };
 
 
@@ -85,14 +107,22 @@ export default function CrudCreate() {
             <Header setView={() => { }} />
 
             <h1 className="text-2xl font-bold mb-6 border-b-2 pb-2 border-green-500">
-                Create練習（作成）メールと名前の追加
+                Create練習（作成）メールと名前と住所と電話
             </h1>
 
 
 
             {/* 入力フォームの作成 */}
-            <form onSubmit={createUser} className="mb-8 p-4 bg-gray-50 rounded-xl border flex gap-3 ">
+            {/* grid→　要素をマス目（表）のように並べる。 */}
+            {/* grid-cols-2は、２列作る！！ */}
+            {/* gap-4は、マス目同士の感覚を４マス開ける */}
+            {/* p-6は、内側の余白をを大きくする */}
+            {/* borderは、枠線を付けます。 */}
+            <form onSubmit={createUser} className="mb-8 p-6 bg-gray-50 rounded-xl border grid grid-cols-2  gap-4 ">
                 {/* 新しいユーザーの名前入力欄の作成 */}
+
+                {/* inputで入力する場所を作る */}
+                {/* 入力する場所 */}
                 <input
                     type="text"
                     value={inputName}
@@ -111,18 +141,47 @@ export default function CrudCreate() {
                     placeholder="メールアドレスを入力"
                     className="flex-1 p-2 border rounded-lg"
                 />
-                <button type="submit" className="bg-green-600 text-white px-6 py-2 rounded-lg font-bold " >
+
+
+                {/* 住所の入力欄 */}
+
+                <input
+                    type="text"
+                    value={inputAddress}
+                    onChange={(e) => setInputAddress(e.target.value)}
+                    placeholder="住所を入力"
+                    className="flex-1 p-2 border rounded-lg"
+                />
+
+
+                {/* 電話番号の入力 */}
+
+                <input
+                    type="text"
+                    value={inputPhone}
+                    onChange={(e) => setInputPhone(e.target.value)}
+                    placeholder="電話番号の入力"
+                    className="flex-1 p-2 border rounded-lg"
+
+                />
+
+
+                {/* col-span-2は、２列分使うという意味。 */}
+
+                <button type="submit" className="col-span-2 bg-green-600 text-white  py-3 rounded-lg font-bold  " >
                     ✨ 追加
                 </button>
             </form>
 
 
-            {/* 残りここだけトレースする */}
             {/* 追加処理後に、実際に画面に表示するエリア作成 */}
+            {/* ここで画面に表示する */}
 
             <div className="grid gap-4">
                 {/* 画面に表示する部分 */}
                 {/* usersという配列を取り出して、<div>を作る */}
+                {/* usersの中に入っている全員を取り出して画面に表示する */}
+                {/* 「users 配列の中身を画面に表示する場所」**です。 */}
                 {users.map((user) => (
                     //key={user.id} →　Reactが「どのカードが誰か」を見分けるための目印（これがないとReactが警告を出す）
                     <div key={user.id} className="p-4 bg-white shadow-md rounded-lg border">
@@ -130,6 +189,8 @@ export default function CrudCreate() {
                         <p className="text-sm text-blue-600 font-bold">{user.role}</p>
                         <h2 className="text-xl font-bold text-gray-800">{user.name}</h2>
                         <p className="text-gray-500 text-sm">{user.email}</p>
+                        <p className="text-gray-500 text-sm ">{user.address}</p>
+                        <p className="text-gray-500 text-sm ">{user.phone}</p>
                         <p className="text-gray-400 text-xs font-mono">ID:{user.id}</p>
                     </div>
                 ))}
