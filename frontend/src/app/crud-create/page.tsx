@@ -83,6 +83,7 @@ export default function CrudCreate() {
 
         // 入力されたデータを配列に追加する（これであってるか？？？？？？？？？？）
         // usersという配列に追加される？？？？？
+        // 追加する前のデータを全部渡してる、そこにnewUserの新規ユーザーを追加する
         setUsers((prev) => [...prev, newUser]);
 
 
